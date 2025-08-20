@@ -91,7 +91,7 @@ namespace LinkitAir.Controllers
                 };
                 return Json(response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new UnauthorizedResult();
             }
