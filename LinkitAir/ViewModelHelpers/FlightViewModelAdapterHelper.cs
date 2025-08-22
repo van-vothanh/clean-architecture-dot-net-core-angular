@@ -1,7 +1,8 @@
-﻿using Mapster;
+using Mapster;
 using Core.Entities;
 using LinkitAir.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LinkitAir.ViewModelHelpers
 {
@@ -9,11 +10,8 @@ namespace LinkitAir.ViewModelHelpers
     {
         public List<FlightViewModel> customAdapt(IEnumerable<FlightInstance> flightInstances)
         {
-            List<FlightViewModel> flightInstanceViewModels = new List<FlightViewModel>();
             var config = new TypeAdapterConfig();
-            foreach(var flightInstance in flightInstances)
-            {
-                config.NewConfig<FlightInstance, FlightViewModel>()
+            config.NewConfig<FlightInstance, FlightViewModel>()
                .Map(
                    dest => dest.OriginAirportName, src => src.FlightRoute.Origin.Name
                  ).Map(
@@ -31,11 +29,8 @@ namespace LinkitAir.ViewModelHelpers
                  ).Map(
                    dest => dest.ArrivalTime, src => src.ArrivalTime.ToString("dddd, dd MMMM yyyy HH:mm")
                  );
-                IAdapter adapter = new Adapter(config);
-                flightInstanceViewModels.Add(adapter.Adapt<FlightViewModel>(flightInstance));
-            }
             
-            return flightInstanceViewModels;
+            return flightInstances.Adapt<List<FlightViewModel>>(config);
         }
 
         public FlightViewModel customAdapt(FlightInstance flightInstance)
@@ -55,9 +50,8 @@ namespace LinkitAir.ViewModelHelpers
                   ).Map(
                     dest => dest.FlightCode, src => src.Code
                   );
-            IAdapter adapter = new Adapter(config);
-            var flightInstanceViewModel = adapter.Adapt<FlightViewModel>(flightInstance);
-            return flightInstanceViewModel;
+            
+            return flightInstance.Adapt<FlightViewModel>(config);
         }
     }
 }
