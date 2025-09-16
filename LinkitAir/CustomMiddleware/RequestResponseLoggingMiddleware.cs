@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -44,7 +43,7 @@ namespace LinkitAir.CustomMiddleware
 
                 _logger.LogInformation(await FormatResponse(context.Response));
 
-                _requestLogService.CreateRequestLog(context.Request.Method, context.Response.StatusCode.ToString(),
+                await _requestLogService.CreateRequestLog(context.Request.Method, context.Response.StatusCode.ToString(),
     context.Request.Path, 27214);
 
                 await responseBody.CopyToAsync(originalBodyStream);
@@ -56,13 +55,12 @@ namespace LinkitAir.CustomMiddleware
 
         private async Task<string> FormatRequest(HttpRequest request)
         {
-            var body = request.Body;
-            request.EnableRewind();
+            request.EnableBuffering();
 
-            var buffer = new byte[Convert.ToInt32(request.ContentLength)];
+            var buffer = new byte[Convert.ToInt32(request.ContentLength ?? 0)];
             await request.Body.ReadAsync(buffer, 0, buffer.Length);
             var bodyAsText = Encoding.UTF8.GetString(buffer);
-            request.Body = body;
+            request.Body.Position = 0;
 
             return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
         }
