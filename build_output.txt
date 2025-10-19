@@ -1,0 +1,33 @@
+  Determining projects to restore...
+  Restored /data/code/LinkitAir/LinkitAir.csproj (in 12.09 sec).
+  Restored /data/code/Infrastructure/Infrastructure.csproj (in 124 ms).
+  Restored /data/code/Core/Core.csproj (in 493 ms).
+  Core -> /data/code/Core/bin/Debug/net8.0/Core.dll
+  Infrastructure -> /data/code/Infrastructure/bin/Debug/net8.0/Infrastructure.dll
+/data/code/LinkitAir/CustomMiddleware/RequestResponseLoggingMiddleware.cs(2,33): error CS0234: The type or namespace name 'Internal' does not exist in the namespace 'Microsoft.AspNetCore.Http' (are you missing an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(1,7): error CS0246: The type or namespace name 'Newtonsoft' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(1,7): error CS0246: The type or namespace name 'Newtonsoft' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/Startup.cs(129,56): warning CS0618: 'IHostingEnvironment' is obsolete: 'This type is obsolete and will be removed in a future version. The recommended alternative is Microsoft.AspNetCore.Hosting.IWebHostEnvironment.' [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObjectAttribute' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObject' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(5,17): error CS0103: The name 'MemberSerialization' does not exist in the current context [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObjectAttribute' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObject' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(5,17): error CS0103: The name 'MemberSerialization' does not exist in the current context [/data/code/LinkitAir/LinkitAir.csproj]
+
+Build FAILED.
+
+/data/code/LinkitAir/Startup.cs(129,56): warning CS0618: 'IHostingEnvironment' is obsolete: 'This type is obsolete and will be removed in a future version. The recommended alternative is Microsoft.AspNetCore.Hosting.IWebHostEnvironment.' [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/CustomMiddleware/RequestResponseLoggingMiddleware.cs(2,33): error CS0234: The type or namespace name 'Internal' does not exist in the namespace 'Microsoft.AspNetCore.Http' (are you missing an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(1,7): error CS0246: The type or namespace name 'Newtonsoft' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(1,7): error CS0246: The type or namespace name 'Newtonsoft' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObjectAttribute' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObject' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenRequestViewModel.cs(5,17): error CS0103: The name 'MemberSerialization' does not exist in the current context [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObjectAttribute' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(5,6): error CS0246: The type or namespace name 'JsonObject' could not be found (are you missing a using directive or an assembly reference?) [/data/code/LinkitAir/LinkitAir.csproj]
+/data/code/LinkitAir/ViewModels/TokenResponseViewModel.cs(5,17): error CS0103: The name 'MemberSerialization' does not exist in the current context [/data/code/LinkitAir/LinkitAir.csproj]
+    1 Warning(s)
+    9 Error(s)
+
+Time Elapsed 00:00:26.41
