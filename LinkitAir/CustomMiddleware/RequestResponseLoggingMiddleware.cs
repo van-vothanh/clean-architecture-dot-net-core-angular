@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Interfaces;
+using System.Text;
 
 namespace LinkitAir.CustomMiddleware
 {
@@ -15,17 +9,12 @@ namespace LinkitAir.CustomMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
-        private IRequestLogService _requestLogService;
+        private IRequestLogService? _requestLogService;
 
-
-        public RequestResponseLoggingMiddleware(RequestDelegate next,
-                                                ILoggerFactory loggerFactory)
+        public RequestResponseLoggingMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
-
             _next = next;
-            //  loggerFactory.AddDebug();
-            _logger = loggerFactory
-                      .CreateLogger<RequestResponseLoggingMiddleware>();
+            _logger = loggerFactory.CreateLogger<RequestResponseLoggingMiddleware>();
         }
 
         public async Task Invoke(HttpContext context, IRequestLogService requestLogService)
@@ -45,24 +34,20 @@ namespace LinkitAir.CustomMiddleware
                 _logger.LogInformation(await FormatResponse(context.Response));
 
                 _requestLogService.CreateRequestLog(context.Request.Method, context.Response.StatusCode.ToString(),
-    context.Request.Path, 27214);
+                    context.Request.Path, 27214);
 
                 await responseBody.CopyToAsync(originalBodyStream);
-
-
-
             }
         }
 
         private async Task<string> FormatRequest(HttpRequest request)
         {
-            var body = request.Body;
-            request.EnableRewind();
+            request.EnableBuffering();
 
-            var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-            await request.Body.ReadAsync(buffer, 0, buffer.Length);
+            var buffer = new byte[Convert.ToInt32(request.ContentLength ?? 0)];
+            await request.Body.ReadAsync(buffer);
             var bodyAsText = Encoding.UTF8.GetString(buffer);
-            request.Body = body;
+            request.Body.Position = 0;
 
             return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
         }
@@ -75,9 +60,6 @@ namespace LinkitAir.CustomMiddleware
 
             return $"Response {text}";
         }
-
-        //private async 
-
-
     }
 }
+
